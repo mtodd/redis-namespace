@@ -125,7 +125,11 @@ class Redis
     }
 
     # support previous versions of redis gem
-    ALIASES = (defined? Redis::Client) ? Redis::Client::ALIASES : Redis::ALIASES
+    ALIASES = case
+              when defined? Redis::Client::ALIASES  then Redis::Client::ALIASES
+              when defined? Redis::ALIASES          then Redis::ALIASES
+              else {}
+              end
 
     attr_accessor :namespace
 
