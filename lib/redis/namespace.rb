@@ -163,7 +163,7 @@ class Redis
         args = add_namespace(args)
         args.push(last) if last
       when :alternate
-        args = [ add_namespace(Hash[*args]) ]
+        args = add_namespace(Hash[*args]).to_a.flatten
       end
 
       # Dispatch the command to Redis and store the result.
